@@ -6,14 +6,14 @@ def call(body) {
   body.delegate = config
   body()
 
-  echo config
-
   def jdk = config.jdk ?: 'java-8-oracle'
 
   def buildTasks = config.buildTasks ?: 'clean buildInfo assemble'
   def testTasks = config.testTasks ?: 'test'
   def publishTasks = config.publishTasks ?: 'publish'
   def dockerTasks = config.dockerTasks ?: 'dockerBuild dockerPush dockerClean'
+
+  echo "DockerTasks $dockerTasks"
 
   stage 'Clone sources'
   checkout scm
