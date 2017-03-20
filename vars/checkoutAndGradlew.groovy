@@ -7,10 +7,10 @@ def call(body) {
 
   def jdk = config.jdk ?: 'java-8-oracle'
 
-  def buildTasks = config.buildTasks ?: 'clean assemble'
+  def buildTasks = config.buildTasks ?: 'clean buildInfo assemble'
   def testTasks = config.testTasks ?: 'test'
   def publishTasks = config.publishTasks ?: 'publish'
-  def dockerTasks = config.publishTasks ?: 'dockerBuild dockerPush dockerClean'
+  def dockerTasks = config.dockerTasks ?: 'dockerBuild dockerPush dockerClean'
 
   stage 'Clone sources'
   checkout scm
