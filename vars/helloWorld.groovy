@@ -5,5 +5,7 @@ def call(body) {
   body.delegate = config
   body()
 
-  echo "Hello World!"
+  def config.name ?: "human"
+
+  echo "Hello ${config.name}!"
 }
