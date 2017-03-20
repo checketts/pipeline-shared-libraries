@@ -27,13 +27,17 @@ def call(body) {
     stage 'Gradle Build'
     sh "./gradlew $buildTasks --refresh-dependencies"
 
-    stage 'Gradle Test'
-    sh "./gradlew $testTasks"
+    if(testTasks.toLowerCase() != "none"){
+      stage 'Gradle Test'
+      sh "./gradlew $testTasks"
+    }
 
-    stage 'Gradle Publish'
-    sh "./gradlew $publishTasks"
+    if(publishTasks.toLowerCase() != "none"){
+      stage 'Gradle Publish'
+      sh "./gradlew $publishTasks"
+    }
 
-    if(dockerTasks.toLowercase() != "none"){
+    if(dockerTasks.toLowerCase() != "none"){
       stage 'Docker Build'
       sh "./gradlew $dockerTasks"
     }
