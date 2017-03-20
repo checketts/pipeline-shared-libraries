@@ -25,13 +25,13 @@ def call(body) {
 
   withEnv(customEnv) {
     stage 'Gradle Build'
-    sh "./gradlew $gradleTasks --refresh-dependencies"
+    sh "./gradlew $buildTasks --refresh-dependencies"
 
     stage 'Gradle Test'
-    sh "./gradlew $gradleTasks"
+    sh "./gradlew $testTasks"
 
     stage 'Gradle Publish'
-    sh "./gradlew $gradleTasks"
+    sh "./gradlew $publishTasks"
 
     if(dockerTasks.toLowercase() != "none"){
       stage 'Docker Build'
