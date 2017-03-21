@@ -1,4 +1,4 @@
 <dl>
   <dt><code>gradlew(tasks[, jdk])</code></dt>
-  <dd>Specifies gradle tasks to be run with the listed JDK (as defined in tools).</dd>
+  <dd>Specifies gradle tasks to be run. JDK can be specified, otherwise uses default Oracle Java 8.</dd>
 </dl>

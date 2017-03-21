@@ -28,7 +28,15 @@ def call(body) {
 
     if(!testTasks.toLowerCase().equals("none")){
       stage 'Gradle Test'
-      sh "./gradlew $testTasks"
+      try{
+        sh "./gradlew $testTasks"
+      } finally {
+        junit '**/test-results/*.xml'
+        step([$class: 'Publisher', reportFilenamePattern: '**/reports/tests/*.xml'])
+
+        currentBuild.result = 'FAILURE'
+      }
+
     }
 
     if(!publishTasks.toLowerCase().equals("none")){
