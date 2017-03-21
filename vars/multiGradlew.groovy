@@ -30,12 +30,13 @@ def call(body) {
       stage 'Gradle Test'
       try{
         sh "./gradlew $testTasks"
+      } catch (err) {
+        throw err
+        currentBuild.result = 'FAILURE'
       } finally {
         junitResults
         //TestNG
         step([$class: 'Publisher', reportFilenamePattern: '**/reports/tests/*.xml'])
-
-        currentBuild.result = 'FAILURE'
       }
 
     }
