@@ -36,7 +36,7 @@ def call(body) {
       } finally {
         junitResults
         //TestNG
-        step([$class: 'Publisher', reportFilenamePattern: '**/reports/tests/*.xml'])
+        step([$class: 'Publisher', reportFilenamePattern: '**/test-results/*.xml'])
       }
 
     }
