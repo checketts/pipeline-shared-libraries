@@ -13,9 +13,6 @@ def call(body) {
   def publishTasks = config.publishTasks ?: 'publish'
   def dockerTasks = config.dockerTasks ?: 'dockerBuild dockerPush dockerClean'
 
-  stage 'Clone sources'
-  checkout scm
-
   def javaHome = tool(name: jdk)
 
   /* Set up environment variables for re-using our auto-installed tools */
@@ -26,6 +23,7 @@ def call(body) {
 
   withEnv(customEnv) {
     stage 'Gradle Build'
+    checkout scm
     sh "./gradlew $buildTasks --refresh-dependencies"
 
     if(!testTasks.toLowerCase().equals("none")){
