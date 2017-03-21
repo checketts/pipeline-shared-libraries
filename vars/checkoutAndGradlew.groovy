@@ -13,8 +13,6 @@ def call(body) {
   def publishTasks = config.publishTasks ?: 'publish'
   def dockerTasks = config.dockerTasks ?: 'dockerBuild dockerPush dockerClean'
 
-  echo "DockerTasks $dockerTasks"
-
   stage 'Clone sources'
   checkout scm
 
@@ -45,5 +43,4 @@ def call(body) {
       sh "./gradlew $dockerTasks"
     }
   }
-
 }
