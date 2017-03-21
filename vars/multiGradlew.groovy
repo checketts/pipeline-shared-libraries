@@ -31,7 +31,8 @@ def call(body) {
       try{
         sh "./gradlew $testTasks"
       } finally {
-        junit '**/test-results/*.xml'
+        junitResults
+        //TestNG
         step([$class: 'Publisher', reportFilenamePattern: '**/reports/tests/*.xml'])
 
         currentBuild.result = 'FAILURE'
